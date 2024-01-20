@@ -10,6 +10,7 @@ interface ICart{
 }
 const initialState:ICart={
     products:[],
+    total:0;
 
 };
 
@@ -26,6 +27,8 @@ else{
     state.products.push({...action.Payload,quantity:1});
 
 }
+state.total+=action.payload.price;
+
 
 },
 removeOne:(state,action:PayloadAction<IProduct>)=>{
@@ -38,6 +41,8 @@ removeOne:(state,action:PayloadAction<IProduct>)=>{
         product=>product._id===!action.Payload._id)
 
     }
+    state.total-=action.payload.price;
+
 },
 removeFromCart:(state,action:PayloadAction<IProduct>)=>{
     state.products=state.products.filter(
@@ -45,7 +50,8 @@ removeFromCart:(state,action:PayloadAction<IProduct>)=>{
 })
         
     },
-    
+    state.total-=action.payload.price*ToastAction.payload.quantity;
+
 });
 
 export const {addToCart,removeFromCart,removeOne} =cartSlice.actions;

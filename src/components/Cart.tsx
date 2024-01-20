@@ -18,7 +18,7 @@ import { useAppDispatch, useAppSelector } from '@/redux/hook';
 
 export default function Cart() {
 
-  const{products}=useAppSelector(state => state.cart);
+  const{products,total}=useAppSelector(state => state.cart);
   const dispatch=useAppDispatch();
   //! Dummy data
 
